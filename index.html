@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0a3557">
+  <meta name="color-scheme" content="light">
+  <title>Fluidos Pediátricos</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="icon-192.png">
+  <link rel="apple-touch-icon" href="icon-192.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Fluidos Pediátricos">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="app-header">
+    <div class="brand-mark" aria-hidden="true">
+      <svg viewBox="0 0 64 64" role="img">
+        <path d="M32 5C25 17 14 28 14 40a18 18 0 0 0 36 0C50 28 39 17 32 5Z" fill="currentColor"/>
+        <path d="M25 39h14M32 32v14" fill="none" stroke="#0a3557" stroke-width="5" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <div class="brand-copy">
+      <h1>Fluidos Pediátricos</h1>
+      <p>Agua endógena y pérdidas insensibles</p>
+    </div>
+    <span class="offline-badge" aria-label="Funciona sin conexión">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 9 9 9 9 0 0 0-9-9Zm4.1 6.7-4.8 6a1 1 0 0 1-1.5.1l-2.4-2.4 1.4-1.4 1.6 1.6 4.1-5.1Z"/></svg>
+      Offline
+    </span>
+  </header>
+
+  <main class="app-shell">
+
+    <section class="author-hero" aria-label="Autor de la aplicación">
+      <div class="author-credit">
+        <span>Autor de la aplicación</span>
+        <strong>Dr. Carlos Huaraca Carhuaricra</strong>
+      </div>
+    </section>
+
+    <section class="intro" aria-labelledby="intro-title">
+      <span class="eyebrow">Calculadora clínica</span>
+      <h2 id="intro-title">Dos datos. Cálculo inmediato.</h2>
+      <p>Ingresa el peso del paciente y el periodo. La fórmula se selecciona automáticamente según el tramo de peso.</p>
+    </section>
+
+    <section class="input-panel" aria-labelledby="data-title">
+      <div class="panel-heading">
+        <div>
+          <span class="section-kicker">Entradas</span>
+          <h3 id="data-title">Datos del paciente</h3>
+        </div>
+        <button type="button" class="text-button" id="clearButton" aria-label="Limpiar los campos">Limpiar</button>
+      </div>
+
+      <div class="input-grid">
+        <div class="field" id="weightField">
+          <label for="weightInput">Peso del paciente</label>
+          <div class="input-control">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3h10a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V7a4 4 0 0 1 4-4Zm5 3a4 4 0 0 0-4 4h2a2 2 0 1 1 4 0h2a4 4 0 0 0-4-4Z"/></svg>
+            <input id="weightInput" name="weight" type="text" inputmode="decimal" autocomplete="off" maxlength="12" placeholder="Ej. 12,5" aria-describedby="weightHint weightError">
+            <span class="unit">kg</span>
+          </div>
+          <span class="field-hint" id="weightHint">Número mayor que cero</span>
+          <span class="field-error" id="weightError" role="alert"></span>
+        </div>
+
+        <div class="field" id="hoursField">
+          <label for="hoursInput">Número de horas</label>
+          <div class="input-control">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2Zm1 5v4.6l3.2 1.9-1 1.7L11 12.7V7Z"/></svg>
+            <input id="hoursInput" name="hours" type="text" inputmode="decimal" autocomplete="off" maxlength="12" placeholder="Ej. 12" aria-describedby="hoursHint hoursError">
+            <span class="unit">h</span>
+          </div>
+          <span class="field-hint" id="hoursHint">Admite horas completas o decimales</span>
+          <span class="field-error" id="hoursError" role="alert"></span>
+        </div>
+      </div>
+
+      <div class="quick-row" aria-label="Accesos rápidos para el número de horas">
+        <span>Accesos rápidos</span>
+        <div class="quick-actions">
+          <button type="button" class="quick-chip" data-hours="6">6 h</button>
+          <button type="button" class="quick-chip" data-hours="12">12 h</button>
+          <button type="button" class="quick-chip" data-hours="24">24 h</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="empty-state" id="emptyState" aria-live="polite">
+      <div class="empty-icon" aria-hidden="true">
+        <svg viewBox="0 0 64 64"><path d="M32 6C24 20 13 31 13 43a19 19 0 0 0 38 0C51 31 40 20 32 6Z"/><path d="M26 41h12M32 35v12"/></svg>
+      </div>
+      <h3>Listo para calcular</h3>
+      <p>Completa los dos campos para ver los resultados del periodo seleccionado.</p>
+    </section>
+
+    <section class="results" id="results" hidden aria-live="polite" aria-label="Resultados calculados">
+      <div class="result-summary">
+        <div>
+          <span class="section-kicker">Resultado automático</span>
+          <h3>Resumen del periodo</h3>
+        </div>
+        <div class="summary-tags">
+          <span class="category-tag" id="categoryTag">—</span>
+          <span class="period-tag" id="periodTag">—</span>
+        </div>
+      </div>
+
+      <div class="clinical-context" id="clinicalContext">
+        <div class="context-item">
+          <span>Tramo aplicado</span>
+          <strong id="categoryLabel">—</strong>
+        </div>
+        <div class="context-item" id="surfaceAreaItem" hidden>
+          <span>Superficie corporal</span>
+          <strong id="surfaceAreaValue">—</strong>
+        </div>
+      </div>
+
+      <div class="result-grid">
+        <article class="result-card water-card">
+          <div class="result-card-header">
+            <div class="result-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M12 2C9.2 6.8 5 11 5 15.2a7 7 0 0 0 14 0C19 11 14.8 6.8 12 2Z"/><path d="M9 16.2a3.4 3.4 0 0 0 3.3 2.4" fill="none"/></svg>
+            </div>
+            <div>
+              <span class="result-label">Agua endógena</span>
+              <span class="result-subtitle">Volumen en el periodo</span>
+            </div>
+          </div>
+          <div class="result-value-row">
+            <strong class="result-value" id="endogenousTotal">—</strong>
+            <span class="result-unit">mL</span>
+          </div>
+          <div class="rate-row">
+            <span>Tasa equivalente</span>
+            <strong id="endogenousHourly">— mL/h</strong>
+          </div>
+          <div class="formula-line" id="endogenousFormula">—</div>
+        </article>
+
+        <article class="result-card loss-card">
+          <div class="result-card-header">
+            <div class="result-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M7 3c2 2 2 4 0 6M12 3c2 2 2 4 0 6M17 3c2 2 2 4 0 6" fill="none"/><path d="M12 10a7 7 0 1 0 7 7 7 7 0 0 0-7-7Zm-2 6h4M12 14v4"/></svg>
+            </div>
+            <div>
+              <span class="result-label">Pérdidas insensibles</span>
+              <span class="result-subtitle">Volumen en el periodo</span>
+            </div>
+          </div>
+          <div class="result-value-row">
+            <strong class="result-value" id="insensibleTotal">—</strong>
+            <span class="result-unit">mL</span>
+          </div>
+          <div class="rate-row">
+            <span>Tasa equivalente</span>
+            <strong id="insensibleHourly">— mL/h</strong>
+          </div>
+          <div class="formula-line" id="insensibleFormula">—</div>
+        </article>
+      </div>
+
+      <section class="reference-panel" aria-labelledby="reference-title">
+        <div class="reference-heading">
+          <div>
+            <span class="section-kicker">Comprobación rápida</span>
+            <h4 id="reference-title">Referencias a 12 y 24 horas</h4>
+          </div>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Zm2 4v2h10V7Zm0 4v2h4v-2Zm6 0v2h4v-2Zm-6 4v2h4v-2Zm6 0v2h4v-2Z"/></svg>
+        </div>
+        <div class="reference-table" role="table" aria-label="Valores de referencia">
+          <div class="reference-row reference-header" role="row">
+            <span role="columnheader">Cálculo</span>
+            <span role="columnheader">12 h</span>
+            <span role="columnheader">24 h</span>
+          </div>
+          <div class="reference-row" role="row">
+            <strong role="cell">Agua endógena</strong>
+            <span role="cell" id="endogenous12">—</span>
+            <span role="cell" id="endogenous24">—</span>
+          </div>
+          <div class="reference-row" role="row">
+            <strong role="cell">Pérdidas insensibles</strong>
+            <span role="cell" id="insensible12">—</span>
+            <span role="cell" id="insensible24">—</span>
+          </div>
+        </div>
+      </section>
+
+      <aside class="source-note" id="sourceNote" hidden>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 1.7 20h20.6ZM11 8h2v6h-2Zm0 8h2v2h-2Z"/></svg>
+        <div>
+          <strong>Aclaración para pacientes de más de 30 kg</strong>
+          <p>La guía visual indica “R.E./3” para agua endógena, pero no define R.E. Esta app conserva la interpretación del dashboard previo: pérdidas insensibles ÷ 3. Verifica este criterio con el protocolo institucional.</p>
+        </div>
+      </aside>
+
+      <details class="method-panel">
+        <summary>
+          <span>
+            <span class="section-kicker">Trazabilidad</span>
+            <strong>Ver fórmula y sustitución</strong>
+          </span>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m7 10 5 5 5-5"/></svg>
+        </summary>
+        <div class="method-content">
+          <div class="method-block">
+            <span>Agua endógena</span>
+            <code id="endogenousWork">—</code>
+          </div>
+          <div class="method-block">
+            <span>Pérdidas insensibles</span>
+            <code id="insensibleWork">—</code>
+          </div>
+          <div class="method-block" id="surfaceAreaWorkBlock" hidden>
+            <span>Superficie corporal</span>
+            <code id="surfaceAreaWork">—</code>
+          </div>
+        </div>
+      </details>
+    </section>
+
+    <aside class="safety-card">
+      <div class="safety-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M12 2 4 5v6c0 5.1 3.4 9.7 8 11 4.6-1.3 8-5.9 8-11V5Zm-1 6h2v3h3v2h-3v3h-2v-3H8v-2h3Z"/></svg>
+      </div>
+      <div>
+        <strong>Uso clínico responsable</strong>
+        <p>Herramienta de apoyo basada en la guía suministrada. No sustituye valoración médica, prescripción ni protocolos locales. Confirma siempre los resultados antes de aplicarlos.</p>
+      </div>
+    </aside>
+  </main>
+
+  <footer class="app-footer">
+    <span>Versión personalizada</span>
+    <span aria-hidden="true">•</span>
+    <span>Dr. Carlos Huaraca Carhuaricra</span>
+  </footer>
+
+  <script src="calculator.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
