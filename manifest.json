@@ -1,6 +1,6 @@
 {
   "name": "Calculadora Fluidos Pediátricos",
-  "short_name": "Fluidos Pediátricos",
+  "short_name": "Fluidos Ped.",
   "description": "Agua endógena y pérdidas insensibles - Dr. Carlos Huaraca Carhuaricra",
   "start_url": "./index.html",
   "scope": "./",

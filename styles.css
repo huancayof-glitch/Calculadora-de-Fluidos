@@ -92,6 +92,16 @@ svg { display: block; }
   font-weight: 700;
   letter-spacing: .02em;
 }
+.offline-badge.online {
+  background: rgba(255,255,255,.18);
+  border-color: rgba(255,255,255,.30);
+  color: #ffffff;
+}
+.offline-badge.offline {
+  background: rgba(255,255,255,.10);
+  border-color: rgba(255,255,255,.19);
+  color: rgba(255,255,255,.91);
+}
 .offline-badge svg { width: 14px; height: 14px; fill: currentColor; }
 
 .app-shell {
@@ -295,40 +305,14 @@ svg { display: block; }
 }
 
 
-/* Personalización integrada: fotografía del autor como fondo real de la app */
+/* Personalización integrada: fondo blanco sin imagen */
 html {
-  background: #0b2237;
+  background: #ffffff;
 }
 body {
   position: relative;
   isolation: isolate;
-  background: #eaf1f7;
-}
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: -2;
-  pointer-events: none;
-  background-image: url("autor_carlos.jpg");
-  background-repeat: no-repeat;
-  background-position: center 12%;
-  background-size: cover;
-  filter: saturate(.88) contrast(.96) brightness(.93);
-}
-body::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-  background:
-    linear-gradient(180deg,
-      rgba(5, 25, 43, .16) 0%,
-      rgba(9, 42, 68, .22) 22%,
-      rgba(235, 243, 249, .72) 42%,
-      rgba(243, 247, 251, .90) 68%,
-      rgba(243, 247, 251, .96) 100%);
+  background: #ffffff;
 }
 .app-header {
   background: linear-gradient(135deg, rgba(7,30,51,.95), rgba(10,53,87,.92) 62%, rgba(11,80,125,.90));
@@ -338,40 +322,8 @@ body::after {
 .app-shell {
   padding-top: 0;
 }
-.author-hero {
-  min-height: 300px;
-  display: flex;
-  align-items: flex-end;
-  margin: 0 -16px 18px;
-  padding: 22px 18px 24px;
-}
-.author-credit {
-  width: min(100%, 620px);
-  padding: 15px 17px;
-  border-left: 4px solid #69d2f1;
-  border-radius: 0 15px 15px 0;
-  background: linear-gradient(90deg, rgba(4,25,43,.88), rgba(7,42,70,.58), rgba(7,42,70,.08));
-  color: #fff;
-  text-shadow: 0 2px 9px rgba(0,0,0,.42);
-  box-shadow: 0 12px 28px rgba(4,25,43,.20);
-}
-.author-credit span {
-  display: block;
-  margin-bottom: 5px;
-  color: #9ee8ff;
-  font-size: .69rem;
-  font-weight: 850;
-  letter-spacing: .13em;
-  text-transform: uppercase;
-}
-.author-credit strong {
-  display: block;
-  font-size: clamp(1.12rem, 5.3vw, 1.55rem);
-  line-height: 1.18;
-  letter-spacing: -.015em;
-}
-.intro {
-  margin-top: -2px;
+..intro {
+  margin-top: 0;
   padding: 4px 4px 20px;
   border-radius: 18px;
   text-shadow: 0 1px 0 rgba(255,255,255,.8);

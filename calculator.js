@@ -35,8 +35,8 @@
     if (weight < THRESHOLDS.LOW_WEIGHT_MAX_EXCLUSIVE) {
       category = "lt10";
       categoryLabel = "Menor de 10 kg";
-      insensibleHourly = (weight * 23) / 24;
-      insensibleFormula = "(P × 23 ÷ 24) × horas";
+      insensibleHourly = (weight * 33) / 24;
+      insensibleFormula = "(P × 33 ÷ 24) × horas";
     } else if (weight <= THRESHOLDS.MID_WEIGHT_MAX_INCLUSIVE) {
       category = "10to30";
       categoryLabel = "Entre 10 y 30 kg";

@@ -12,6 +12,8 @@
   const results = $("results");
   const clearButton = $("clearButton");
   const quickChips = Array.prototype.slice.call(document.querySelectorAll(".quick-chip"));
+  const offlineBadge = $("offlineBadge");
+  const offlineLabel = offlineBadge ? offlineBadge.querySelector(".offline-label") : null;
 
   const numberFormatter = typeof Intl !== "undefined"
     ? new Intl.NumberFormat("es-ES", { maximumFractionDigits: 2 })
@@ -36,6 +38,19 @@
     }
     const normalized = text.replace(",", ".");
     return { empty: false, value: Number(normalized) };
+  }
+
+  function updateConnectionStatus() {
+    if (!offlineBadge || !offlineLabel) return;
+
+    const isOnline = navigator.onLine;
+    offlineBadge.classList.toggle("online", isOnline);
+    offlineBadge.classList.toggle("offline", !isOnline);
+    offlineLabel.textContent = isOnline ? "Conectado" : "Sin conexión";
+    offlineBadge.setAttribute(
+      "aria-label",
+      isOnline ? "Conexión activa" : "Sin conexión, la app está disponible sin internet"
+    );
   }
 
   function setFieldError(field, errorNode, message) {
@@ -197,5 +212,16 @@
     weightInput.focus();
   });
 
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", function () {
+      navigator.serviceWorker.register("./service-worker.js").catch(function (error) {
+        console.warn("Service Worker registration failed:", error);
+      });
+    });
+  }
+
+  window.addEventListener("online", updateConnectionStatus);
+  window.addEventListener("offline", updateConnectionStatus);
+  updateConnectionStatus();
   recalculate();
 })();

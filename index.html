@@ -7,11 +7,12 @@
   <meta name="color-scheme" content="light">
   <title>Fluidos Pediátricos</title>
   <link rel="manifest" href="manifest.json">
-  <link rel="icon" href="icon-192.png">
-  <link rel="apple-touch-icon" href="icon-192.png">
+  <link rel="icon" href="icon-192.png" sizes="192x192">
+  <link rel="apple-touch-icon" sizes="180x180" href="icon-192.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="icon-192.png">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="apple-mobile-web-app-title" content="Fluidos Pediátricos">
+  <meta name="apple-mobile-web-app-title" content="Fluidos Ped.">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -26,20 +27,13 @@
       <h1>Fluidos Pediátricos</h1>
       <p>Agua endógena y pérdidas insensibles</p>
     </div>
-    <span class="offline-badge" aria-label="Funciona sin conexión">
+    <span id="offlineBadge" class="offline-badge" aria-live="polite" aria-label="Estado de la conexión">
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 9 9 9 9 0 0 0-9-9Zm4.1 6.7-4.8 6a1 1 0 0 1-1.5.1l-2.4-2.4 1.4-1.4 1.6 1.6 4.1-5.1Z"/></svg>
-      Offline
+      <span class="offline-label">Offline</span>
     </span>
   </header>
 
   <main class="app-shell">
-
-    <section class="author-hero" aria-label="Autor de la aplicación">
-      <div class="author-credit">
-        <span>Autor de la aplicación</span>
-        <strong>Dr. Carlos Huaraca Carhuaricra</strong>
-      </div>
-    </section>
 
     <section class="intro" aria-labelledby="intro-title">
       <span class="eyebrow">Calculadora clínica</span>
@@ -239,7 +233,7 @@
   <footer class="app-footer">
     <span>Versión personalizada</span>
     <span aria-hidden="true">•</span>
-    <span>Dr. Carlos Huaraca Carhuaricra</span>
+    <span>Lic. Alisson Noe Contreras</span>
   </footer>
 
   <script src="calculator.js"></script>
