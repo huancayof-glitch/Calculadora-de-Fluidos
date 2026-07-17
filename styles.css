@@ -59,7 +59,7 @@ svg { display: block; }
   align-items: center;
   gap: 12px;
   min-height: 76px;
-  padding: 12px max(18px, env(safe-area-inset-left)) 12px max(18px, env(safe-area-inset-right));
+  padding: calc(12px + env(safe-area-inset-top)) max(18px, env(safe-area-inset-left)) 12px max(18px, env(safe-area-inset-right));
   color: #fff;
   background: linear-gradient(135deg, var(--navy-950), var(--navy-900) 62%, #0b507d);
   box-shadow: 0 8px 24px rgba(7, 30, 51, 0.23);
