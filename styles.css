@@ -58,16 +58,28 @@ svg { display: block; }
   display: flex;
   align-items: center;
   gap: 12px;
-  min-height: calc(76px + env(safe-area-inset-top, 20px));
-  padding: calc(env(safe-area-inset-top, 20px) + 16px) max(18px, env(safe-area-inset-right)) 12px max(18px, env(safe-area-inset-left));
+  min-height: calc(86px + env(safe-area-inset-top, 24px));
+  padding: calc(env(safe-area-inset-top, 24px) + 22px) max(18px, env(safe-area-inset-right)) 12px max(18px, env(safe-area-inset-left));
   color: #fff;
   background: linear-gradient(135deg, var(--navy-950), var(--navy-900) 62%, #0b507d);
   box-shadow: 0 8px 24px rgba(7, 30, 51, 0.23);
+  position: sticky;
+}
+
+.app-header::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: env(safe-area-inset-top, 24px);
+  background: #000;
+  z-index: -1;
 }
 
 @supports (padding-top: max(env(safe-area-inset-top), 20px)) {
   .app-header {
-    padding-top: calc(max(env(safe-area-inset-top), 20px) + 16px);
+    padding-top: calc(max(env(safe-area-inset-top), 20px) + 22px);
   }
 }
 .brand-mark {
