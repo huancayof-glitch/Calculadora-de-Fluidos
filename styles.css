@@ -73,7 +73,7 @@ svg { display: block; }
   left: 0;
   right: 0;
   height: env(safe-area-inset-top, 24px);
-  background: #000;
+  background: inherit;
   z-index: -1;
 }
 
